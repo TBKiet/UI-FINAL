@@ -161,7 +161,7 @@ export default function Profile() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Username
                     </label>
-                    <p className="text-gray-900">{profile?.username || session.user?.username}</p>
+                    <p className="text-gray-900">{profile?.username || session.user?.name || session.user?.email}</p>
                   </div>
                 </div>
 
