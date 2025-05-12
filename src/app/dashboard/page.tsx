@@ -137,8 +137,8 @@ export default function Dashboard() {
         >
           <h2 className="text-3xl font-bold text-gray-800">
             {(() => {
-              const username = profile?.username || session.user?.username || "";
-              return `Welcome back, ${username}! 👋`;
+              const displayName = profile?.username || session.user?.name || session.user?.email || "there";
+              return `Welcome back, ${displayName}! 👋`;
             })()}
           </h2>
           <p className="text-gray-600 mt-2">
