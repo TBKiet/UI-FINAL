@@ -1,15 +1,31 @@
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
-  interface User {
-    id: string;
-    accessToken?: string;
-  }
-  
+  /**
+   * Extend the built-in session types
+   */
   interface Session {
-    user: User & {
-      id: string;
+    user: {
+      /** The user's MongoDB ID */
+      id?: string;
+      /** The user's access token */
       accessToken?: string;
-    };
+      /** The user's username from MongoDB */
+      username?: string;
+    } & DefaultSession["user"];
+  }
+
+  /**
+   * Extend the built-in user types
+   */
+  interface User {
+    /** The user's MongoDB ID */
+    _id?: string;
+    /** The user's username from MongoDB */
+    username?: string;
+    /** The user's access token */
+    accessToken?: string;
+    /** The user's creation date */
+    createdAt?: Date;
   }
 }
